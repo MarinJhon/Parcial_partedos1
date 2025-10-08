@@ -1,0 +1,107 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+
+/* Mantener la app con apariencia móvil en pantallas grandes */
+html, body, #app {
+	height: 100%;
+}
+
+/* Tamaño base de fuente para toda la app (ajustable) */
+html {
+	font-size: 18px; /* tamaño base para las letras en todas las páginas */
+}
+
+/* Variables de tema: paleta azul / blanco */
+:root {
+	--ion-color-primary: #0d6efd; /* azul principal */
+	--ion-color-primary-contrast: #0d00ff; /* contraste para textos en primary */
+	--ion-color-success: #0d6efd; /* usar azul también para acciones positivas */
+	--ion-background-color: #0d6efd; /* fondo global azul */
+	--ion-text-color: #ffffff; /* texto principal blanco para contraste */
+	--ion-border-color: rgba(255,255,255,0.18); /* bordes suaves sobre azul */
+	--ion-muted-color: rgba(47, 0, 255, 0.85); /* texto secundario claro */
+	--ion-font-size: 18px;
+
+	/* Convertir lo que antes era 'dark' a blanco: */
+	--ion-color-dark: #ffffff;
+	--ion-color-dark-contrast: #0b2540;
+
+	/* Toolbar/tab/searchbar vars para forzar blanco cuando se use color="dark" */
+	--ion-toolbar-background: var(--ion-color-dark);
+	--ion-toolbar-color: var(--ion-color-dark-contrast);
+}
+
+/* Forzar background y color en contenedores principales para consistencia */
+ion-app, ion-content, .ion-page, #app {
+	background: var(--ion-background-color) !important;
+	color: var(--ion-text-color) !important;
+}
+
+/* Forzar white theme donde se use color="dark" en componentes comunes */
+ion-toolbar[color="dark"], ion-header ion-toolbar[color="dark"], ion-footer ion-toolbar[color="dark"], ion-tab-bar[color="dark"] {
+	background: var(--ion-color-dark) !important;
+	color: var(--ion-color-dark-contrast) !important;
+}
+
+/* Searchbar variables: hacer que la caja sea blanca cuando se use el tema dark */
+ion-searchbar {
+	--background: var(--ion-color-dark);
+	--color: var(--ion-color-dark-contrast);
+	--placeholder-color: rgba(11,37,64,0.6);
+}
+
+/* Asegurar que badges/inputs/cards que usan dark hereden el color blanco */
+ion-card, ion-item[color="dark"], ion-badge[color="dark"] {
+	background: var(--ion-color-dark) !important;
+	color: var(--ion-color-dark-contrast) !important;
+}
+
+/* Forzar que cualquier lista, tarjeta o item muestre fondo blanco sobre el azul
+	 si no se define explícitamente un color distinto. Esto evita editar cada página. */
+ion-list, ion-card, ion-item, .ion-page, ion-content {
+	--background: var(--ion-background-color);
+}
+
+/* Elementos de contenido interiores deben usar blanco para tarjetas/elementos
+	 y texto oscuro (cuando corresponda) */
+.ion-page *, ion-content * {
+	color: inherit;
+}
+
+/* Forzar tarjetas e items a presentar fondo blanco por defecto encima del azul */
+ion-card, ion-item {
+	--background: white;
+	--color: #000000;
+}
+
+/* A partir de cierto ancho, centramos y limitamos la anchura para que
+	 no se vea extendida como web de escritorio */
+@media (min-width: 720px) {
+	ion-app, #app {
+		max-width: 420px; /* ancho típico de móvil */
+		margin: 0 auto; /* centrar */
+		border-radius: 8px;
+		box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+		overflow: hidden;
+		background: var(--ion-background-color, #fff);
+	}
+}
+
+/* Evitar que imágenes o tarjetas rompan el layout */
+img, .producto-card img, .mascota-card img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Asegurar que ion-content no haga overflow horizontal */
+ion-content, .ion-content, .ion-page {
+	overflow-x: hidden;
+}
+
+/* Ajustes suaves para pantallas muy anchas (opcional) */
+@media (min-width: 1200px) {
+	ion-app, #app {
+		transform: scale(1.02);
+	}
+}
